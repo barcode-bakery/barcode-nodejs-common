@@ -1,5 +1,10 @@
 'use strict';
 
+/*!
+ * Copyright (C) Jean-Sebastien Goupil
+ * http://www.barcodebakery.com
+ */
+
 import { BCGColor } from './BCGColor';
 import { BCGLabel } from './BCGLabel';
 import { BCGArgumentException } from './BCGArgumentException';
@@ -141,7 +146,7 @@ abstract class BCGBarcode {
      *
      * @param scale Gets the scale of the barcode.
      */
-    setScale(scale: number | string) {
+    setScale(scale: number | string): void {
         scale = parseInt(scale?.toString(), 10)
         if (scale <= 0) {
             throw new BCGArgumentException('The scale must be larger than 0.', 'scale');

@@ -1,6 +1,6 @@
 {
-    "name": "barcode-bakery-common",
-    "version": "2.0.0-alpha.1",
+    "name": "@barcode-bakery/barcode-common",
+    "version": "2.0.0",
     "description": "Base code for generating barcode with the Barcode Bakery library. See barcode-bakery-1d.",
     "author": {
         "name": "Jean-Sébastien Goupil",

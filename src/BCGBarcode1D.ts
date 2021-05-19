@@ -1,6 +1,10 @@
 'use strict';
 
-import { basename } from 'path';
+/*!
+ * Copyright (C) Jean-Sebastien Goupil
+ * http://www.barcodebakery.com
+ */
+
 import { BCGArgumentException } from './BCGArgumentException';
 import { BCGBarcode } from './BCGBarcode';
 import { BCGFont } from './BCGFont';
@@ -12,7 +16,7 @@ abstract class BCGBarcode1D extends BCGBarcode {
     /**
      * The value used in the label to mark the usage of the default label.
      */
-    public static readonly AUTO_LABEL = "##!!AUTO_LABEL!!##";
+    public static readonly AUTO_LABEL = '##!!AUTO_LABEL!!##';
 
     public static readonly SIZE_SPACING_FONT = 5;
 

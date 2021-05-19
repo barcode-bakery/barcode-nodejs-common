@@ -1,3 +1,10 @@
+'use strict';
+
+/*!
+ * Copyright (C) Jean-Sebastien Goupil
+ * http://www.barcodebakery.com
+ */
+
 /**
  * The data input.
  */

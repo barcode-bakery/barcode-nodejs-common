@@ -1,5 +1,10 @@
 ﻿'use strict';
 
+/*!
+ * Copyright (C) Jean-Sebastien Goupil
+ * http://www.barcodebakery.com
+ */
+
 import { BCGArgumentException } from './BCGArgumentException';
 import { BCGBarcode } from './BCGBarcode';
 import { BCGBarcode1D } from './BCGBarcode1D';

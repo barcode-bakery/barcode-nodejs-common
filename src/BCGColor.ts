@@ -1,5 +1,10 @@
 'use strict';
 
+/*!
+ * Copyright (C) Jean-Sebastien Goupil
+ * http://www.barcodebakery.com
+ */
+
 import { imagecolorallocate, imagecolortransparent, Surface } from './draw';
 
 /**

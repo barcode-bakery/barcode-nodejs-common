@@ -1,5 +1,10 @@
 'use strict';
 
+/*!
+ * Copyright (C) Jean-Sebastien Goupil
+ * http://www.barcodebakery.com
+ */
+
 import { BCGArgumentException } from './BCGArgumentException';
 import { BCGFont } from './BCGFont';
 import { BCGColor } from './BCGColor';
@@ -70,7 +75,7 @@ class BCGLabel {
      * @param font The font.
      */
     setFont(font: BCGFont): void {
-        if (font == null) {
+        if (font === null) {
             throw new BCGArgumentException('Font cannot be null.', 'font');
         }
 
@@ -225,7 +230,7 @@ class BCGLabel {
      *
      * @return The dimension.
      */
-    getDimension(): number[] {
+    getDimension(): [number, number] {
         let w = 0;
         let h = 0;
 

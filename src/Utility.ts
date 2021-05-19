@@ -1,10 +1,15 @@
 'use strict';
 
+/*!
+ * Copyright (C) Jean-Sebastien Goupil
+ * http://www.barcodebakery.com
+ */
+
 import { Surface } from './draw';
 
 export function arraySearch(arr: string[], val: string): number {
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i] == val) {
+        if (arr[i] === val) {
             return i;
         }
     }
@@ -51,7 +56,7 @@ export function setFont(image: Surface, font: string, size: string): void {
 }
 
 export function regexpQuote(str: string): string {
-    return str.replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
+    return str.replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, '\\$1');
 }
 
 export function strrev(str: string): string {
@@ -91,8 +96,8 @@ export function bindec(binary: number | string): number {
     return parseInt(binary, 2);
 }
 
-export function decbin(number: number): string {
-    return (number >>> 0).toString(2);
+export function decbin(number: number, bits: number = 0): string {
+    return pad((number >>> 0).toString(2), bits, '0', true);
 }
 
 export function print_r(): string {
@@ -111,18 +116,41 @@ export function isNumeric(input: string): boolean {
     return /^[0-9]+[\.,]{0,1}[0-9]*$/i.test(input);
 }
 
-export function arrayFill<T>(startIndex: number, num: number, value: T): T[] {
-    if (startIndex > 0) {
-        throw new Error("You cannot use arrayFill with startIndex>0");
+export function pad(str: string, length: number, padString: string, left: boolean): string {
+    padString = padString || '0';
+
+    if (str.length >= length) {
+        return str;
     }
 
-    let key, arr = [];
-
-    if (!isNaN(startIndex) && !isNaN(num)) {
-        for (key = 0; key < num; key++) {
-            arr[(key + startIndex)] = value;
-        }
+    let repeat = strRepeat(padString, length - str.length);
+    if (left) {
+        return repeat + str;
     }
 
-    return arr;
+    return str + repeat;
+}
+
+export function safeSubstring(str: string | null, startIndex: number, length: number | null = null): string {
+    if (str == null || str == '') {
+        return '';
+    }
+
+    if (length === null) {
+        length = str.length - startIndex;
+    }
+
+    if (startIndex < 0) {
+        startIndex = Math.max(0, str.length + startIndex);
+    }
+
+    if (length < 0) {
+        length = Math.max(0, str.length - startIndex + length);
+    }
+
+    if (startIndex > str.length - 1) {
+        return '';
+    }
+
+    return str.substr(startIndex, Math.min(length, str.length - startIndex));
 }

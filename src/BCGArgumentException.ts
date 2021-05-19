@@ -1,5 +1,10 @@
 'use strict';
 
+/*!
+ * Copyright (C) Jean-Sebastien Goupil
+ * http://www.barcodebakery.com
+ */
+
 class BCGArgumentException extends Error {
     /**
      * Constructor with specific message for a parameter.

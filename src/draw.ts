@@ -1,5 +1,10 @@
 'use strict';
 
+/*!
+ * Copyright (C) Jean-Sebastien Goupil
+ * http://www.barcodebakery.com
+ */
+
 import canvas from 'canvas';
 import { writeFile, writeFileSync } from 'fs';
 import { setColor } from './Utility';
@@ -37,6 +42,21 @@ export function imagefill(image: Surface, x: number, y: number, color: { r: numb
 export function imagefilledrectangle(image: Surface, x1: number, y1: number, x2: number, y2: number, color: { r: number, g: number, b: number }): void {
     setColor(image, color);
     image.fillRect(x1, y1, x2 - x1 + 1, y2 - y1 + 1);
+}
+
+export function imagefillcircle(image: Surface, x: number, y: number, radius: number, color: { r: number, g: number, b: number }): void {
+
+    image.beginPath();
+    image.ellipse(x, y, radius, radius, 0, 0, 2 * Math.PI, false);
+    setColor(image, color);
+    image.fill();
+
+    /*
+    image.beginPath();
+    setColor(image, color);
+    image.ellipse(x, y, radius, radius, 0, 0, 0, false);
+    image.fill();
+    */
 }
 
 export function imagecolorallocate(image: Surface, red: number, green: number, blue: number): { r: number, g: number, b: number } {
@@ -86,8 +106,8 @@ export class DrawBasic extends Draw {
         }
     }
 
-    toBuffer(callback?: (err: Error | null, data: Buffer) => void) {
-        return (this.image.canvas as any).toBuffer(callback);
+    toBuffer(callback?: (err: Error | null, data: Buffer) => void): void {
+        (this.image.canvas as any).toBuffer(callback);
     }
 }
 
@@ -107,7 +127,7 @@ export class DrawPNG extends Draw {
         }
     }
 
-    toBuffer(callback?: (err: Error | null, data: Buffer) => void) {
+    toBuffer(callback?: (err: Error | null, data: Buffer) => void): void {
         return (this.image.canvas as any).toBuffer(callback);
     }
 }

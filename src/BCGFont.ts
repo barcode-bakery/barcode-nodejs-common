@@ -1,5 +1,10 @@
 'use strict';
 
+/*!
+ * Copyright (C) Jean-Sebastien Goupil
+ * http://www.barcodebakery.com
+ */
+
 import { setFont, setColor } from './Utility';
 import { BCGColor } from './BCGColor';
 import * as draw from './draw';
@@ -105,7 +110,7 @@ class BCGFont {
      *
      * @return The dimension.
      */
-    getDimension(): number[] {
+    getDimension(): [number, number] {
         let w = 0.0, h = 0.0,
             box = this.getBox();
 

@@ -1,5 +1,10 @@
 'use strict';
 
+/*!
+ * Copyright (C) Jean-Sebastien Goupil
+ * http://www.barcodebakery.com
+ */
+
 import { DrawPNG, DrawBasic, imagecreatetruecolor, imagefilledrectangle, Draw, Surface } from './draw';
 import { BCGDrawException } from './BCGDrawException';
 import { BCGBarcode } from './BCGBarcode';
@@ -96,19 +101,19 @@ class BCGDrawing {
         this.rotateDegree = parseFloat(degree?.toString());
     }
 
-    toBuffer(format: BCGDrawing.ImageFormat, callback?: (err: Error | null, data: Buffer) => void) {
+    toBuffer(format: BCGDrawing.ImageFormat, callback?: (err: Error | null, data: Buffer) => void): void {
         this.draw(format);
         let drawer = getDrawerFromFormat(format, this.image!, this.dpi); // !Done in draw.
-        return drawer.toBuffer(callback);
+        drawer.toBuffer(callback);
     }
 
-    toBufferSync(format: BCGDrawing.ImageFormat) {
-        return this.toBuffer(format);
+    toBufferSync(format: BCGDrawing.ImageFormat): void {
+        this.toBuffer(format);
     }
 
     save(fileName: string, callback?: (err: NodeJS.ErrnoException) => void): void;
     save(fileName: string, format: BCGDrawing.ImageFormat, callback?: (err: NodeJS.ErrnoException) => void): void;
-    save(fileName: string, arg2?: ((err: NodeJS.ErrnoException) => void) | BCGDrawing.ImageFormat, callback?: (err: NodeJS.ErrnoException) => void) {
+    save(fileName: string, arg2?: ((err: NodeJS.ErrnoException) => void) | BCGDrawing.ImageFormat, callback?: (err: NodeJS.ErrnoException) => void): void {
         let format: BCGDrawing.ImageFormat;
         if (typeof arg2 === 'function') {
             callback = arg2;
@@ -145,7 +150,7 @@ class BCGDrawing {
         this.exceptionToDraw = exception;
     }
 
-    private draw(format: BCGDrawing.ImageFormat) {
+    private draw(format: BCGDrawing.ImageFormat): void {
         if (this.exceptionToDraw != null || this.barcode == null) {
             let message = this.exceptionToDraw?.message ?? 'No barcode available';
             let ctx = imagecreatetruecolor(1, 1);
@@ -173,7 +178,7 @@ class BCGDrawing {
     /**
      * Init Image and color background.
      */
-    private init(format: BCGDrawing.ImageFormat) {
+    private init(format: BCGDrawing.ImageFormat): void {
         if (this.image === null) {
             this.image = imagecreatetruecolor(this.w, this.h);
             imagefilledrectangle(this.image, 0, 0, this.w - 1, this.h - 1, this.color.allocate(this.image));
