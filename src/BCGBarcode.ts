@@ -86,7 +86,7 @@ abstract class BCGBarcode {
      * @param color The foreground color.
      */
     setForegroundColor(color: string | BCGColor | number): void {
-        if (color instanceof BCGColor) {
+        if (this.isInstanceOfBCGColor(color)) {
             this.colorFg = color;
         } else {
             this.colorFg = new BCGColor(color);
@@ -464,6 +464,16 @@ abstract class BCGBarcode {
         });
 
         return labels;
+    }
+
+    private isInstanceOfBCGColor(obj: any): obj is BCGColor {
+        // Node might have some problems connecting the right object
+        // instanceof might not work.
+        if (obj instanceof BCGColor) {
+            return true;
+        }
+
+        return ['vR', 'vG', 'vB'].every(p => typeof obj[p] === 'number');
     }
 }
 

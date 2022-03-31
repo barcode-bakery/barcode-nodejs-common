@@ -87,7 +87,7 @@ export abstract class Draw {
     }
 
     abstract toFile(fileName: string, callback?: (err: NodeJS.ErrnoException) => void): void;
-    abstract toBuffer(callback?: (err: Error | null, data: Buffer) => void): void;
+    abstract toBuffer(callback?: (err: Error | null, data: Buffer) => void): Buffer;
 }
 
 export class DrawBasic extends Draw {
@@ -106,8 +106,8 @@ export class DrawBasic extends Draw {
         }
     }
 
-    toBuffer(callback?: (err: Error | null, data: Buffer) => void): void {
-        (this.image.canvas as any).toBuffer(callback);
+    toBuffer(callback?: (err: Error | null, data: Buffer) => void): Buffer {
+        return (this.image.canvas as any).toBuffer(callback);
     }
 }
 
@@ -127,7 +127,7 @@ export class DrawPNG extends Draw {
         }
     }
 
-    toBuffer(callback?: (err: Error | null, data: Buffer) => void): void {
+    toBuffer(callback?: (err: Error | null, data: Buffer) => void): Buffer  {
         return (this.image.canvas as any).toBuffer(callback);
     }
 }

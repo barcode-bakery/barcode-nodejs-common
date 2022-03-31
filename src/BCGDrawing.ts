@@ -101,14 +101,14 @@ class BCGDrawing {
         this.rotateDegree = parseFloat(degree?.toString());
     }
 
-    toBuffer(format: BCGDrawing.ImageFormat, callback?: (err: Error | null, data: Buffer) => void): void {
+    toBuffer(format: BCGDrawing.ImageFormat, callback?: (err: Error | null, data: Buffer) => void): Buffer {
         this.draw(format);
         let drawer = getDrawerFromFormat(format, this.image!, this.dpi); // !Done in draw.
-        drawer.toBuffer(callback);
+        return drawer.toBuffer(callback);
     }
 
-    toBufferSync(format: BCGDrawing.ImageFormat): void {
-        this.toBuffer(format);
+    toBufferSync(format: BCGDrawing.ImageFormat): Buffer {
+        return this.toBuffer(format);
     }
 
     save(fileName: string, callback?: (err: NodeJS.ErrnoException) => void): void;

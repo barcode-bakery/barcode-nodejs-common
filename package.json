@@ -1,6 +1,6 @@
 {
     "name": "@barcode-bakery/barcode-common",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Base code for generating barcode with the Barcode Bakery library. See barcode-bakery-1d.",
     "repository": "git://github.com/barcode-bakery/barcode-nodejs-common",
     "publishConfig": {
