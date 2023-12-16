@@ -105,11 +105,11 @@ export function print_r(): string {
 }
 
 export function strSplit(str: string, length: number): string[] | null {
-    if (str == null || !str.toString || length < 1) {
+    if (str == null || !str.toString() || length < 1) {
         return null;
     }
 
-    return str.toString().match(new RegExp('.{1,' + (length || '1') + '}', 'g'));
+    return str.toString().match(new RegExp('.{1,' + (length || '1') + '}', 'gs'));
 }
 
 export function isNumeric(input: string): boolean {
